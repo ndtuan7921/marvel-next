@@ -7,9 +7,10 @@ import theme from "../src/theme";
 import createEmotionCache from "../src/createEmotionCache";
 import { UserContextProvider } from "../src/context";
 import { NextPage } from "next";
-import { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode, useEffect, useState } from "react";
 import MainLayout from "../src/layouts/MainLayout";
-import withAuth from "../src/hooks/withAuth";
+import { Router } from "next/router";
+import Loading from "../src/components/Loading";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -30,6 +31,23 @@ type AppPropsWithLayout = MyAppProps & {
 export default function MyApp(props: AppPropsWithLayout) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const handleStart = () => setLoading(true);
+    const handleComplete = () => setLoading(false);
+
+    Router.events.on("routeChangeStart", handleStart);
+    Router.events.on("routeChangeComplete", handleComplete);
+    Router.events.on("routeChangeError", handleComplete);
+
+    return () => {
+      Router.events.off("routeChangeStart", handleStart);
+      Router.events.off("routeChangeComplete", handleComplete);
+      Router.events.off("routeChangeError", handleComplete);
+    };
+  }, []);
+
   const protectRoute = Component.isPrivate ?? true;
 
   const getLayout =
@@ -46,7 +64,9 @@ export default function MyApp(props: AppPropsWithLayout) {
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
 
-        <UserContextProvider>{layout}</UserContextProvider>
+        <UserContextProvider>
+          {loading ? <Loading /> : layout}
+        </UserContextProvider>
       </ThemeProvider>
     </CacheProvider>
   );
