@@ -54,3 +54,20 @@ export const getCharactersById = async (id: string) => {
     console.log("Error:", error);
   }
 };
+
+export const querySearch = async (query: {
+  type: string;
+  searchTerm: string;
+}) => {
+  const { type, searchTerm } = query;
+  try {
+    const URL = `http://gateway.marvel.com/v1/public/${type}?${
+      type === "comics" ? "title" : "name"
+    }StartsWith=${searchTerm}&ts=1&apikey=${publish_key}&hash=${hashed_key}`;
+    const res = await fetch(URL);
+    let data = await res.json();
+    return data.data.results;
+  } catch (error) {
+    console.log("Error:", error);
+  }
+};

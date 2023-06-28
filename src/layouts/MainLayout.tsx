@@ -16,10 +16,9 @@ const MainLayout = ({ children }: PropsWithChildren) => {
         alignItems={"stretch"}
         spacing={2}
         sx={{
-          maxWidth: "80%",
-          mb: "auto",
-          mt: "3rem",
-          margin: "3rem auto auto",
+          width: "80%",
+          margin: "auto",
+          mt: "2rem",
         }}
       >
         {children}

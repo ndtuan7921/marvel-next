@@ -20,31 +20,29 @@ const ListItemButtonWrapper = styled(ListItemButton)(({ theme }) => ({
   columnGap: "7rem",
 }));
 
-function ListItem() {
+function ListItem(props: any) {
+  const { id, title, name, thumbnail, description } = props;
   return (
     <>
       <ListItemButtonWrapper>
         <ListItemIcon>
-          <Image src={ImgExam} alt={"card-img"} height={250} />
+          <Image
+            src={`${thumbnail.path}.${thumbnail.extension}`}
+            alt={"card-img"}
+            height={250}
+            width={200}
+          />
         </ListItemIcon>
         <ListItemText sx={{ rowGap: "1rem" }}>
           <TypoWrapper>
-            <Typography
-              text={"Captain America"}
-              color={"#757575"}
-              variant="h6"
-            />
+            <Typography text={name ?? title} color={"#757575"} variant="h6" />
+          </TypoWrapper>
+          <TypoWrapper>
+            <Typography text={name ?? title} color={"#151515"} variant="h4" />
           </TypoWrapper>
           <TypoWrapper>
             <Typography
-              text={"Captain America"}
-              color={"#151515"}
-              variant="h4"
-            />
-          </TypoWrapper>
-          <TypoWrapper>
-            <Typography
-              text={"Captain America"}
+              text={description}
               color={"#757575"}
               variant="subtitle1"
             />
