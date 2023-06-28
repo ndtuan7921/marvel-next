@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { getCharactersById, getComicsByCharacterId } from "../../src/services";
-import { Box } from "@mui/material";
+import { Box, Skeleton } from "@mui/material";
 import Image from "next/image";
 import Typography from "../../src/components/Typography";
 import Heading from "../../src/components/Heading";
@@ -30,9 +30,12 @@ function CharacterDetailPage() {
     comics: [],
   });
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [isListCardLoading, setListCardLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         if (router.query.id) {
           const characterDetailData: CharacterDetailData = {
@@ -40,6 +43,8 @@ function CharacterDetailPage() {
             comics: await getComicsByCharacterId(router.query.id as string),
           };
           setCharacterDetail(characterDetailData);
+          await new Promise((resolve) => setTimeout(resolve, 2000));
+          setLoading(false);
         }
       } catch (error) {
         console.error("Error fetching character data", error);
@@ -48,6 +53,10 @@ function CharacterDetailPage() {
 
     fetchData();
   }, [router.query.id]);
+
+  useEffect(() => {
+    setListCardLoading(loading);
+  }, [loading]);
 
   const { character, comics } = characterDetail;
 
@@ -77,12 +86,23 @@ function CharacterDetailPage() {
               maxWidth: "650px",
             }}
           >
-            <Image
-              src={`${thumbnail.path}.${thumbnail.extension}`}
-              alt="character-thumbnail"
-              width={430}
-              height={480}
-            />
+            {loading ? (
+              <Skeleton sx={{ bgcolor: "#424242" }}>
+                <Image
+                  src={`${thumbnail.path}.${thumbnail.extension}`}
+                  alt={"comic-thumbnail"}
+                  width={430}
+                  height={480}
+                />
+              </Skeleton>
+            ) : (
+              <Image
+                src={`${thumbnail.path}.${thumbnail.extension}`}
+                alt="character-thumbnail"
+                width={430}
+                height={480}
+              />
+            )}
           </Box>
           <Box
             sx={{
@@ -93,14 +113,25 @@ function CharacterDetailPage() {
               color: "white",
             }}
           >
-            <Heading variant="h4" text={name} color="white" />
-            <Typography text={description} color="white" />
+            {loading ? (
+              <Skeleton sx={{ bgcolor: "#424242" }}>
+                <Heading variant="h4" text={name} color="white" />
+                <Typography text={description} color="white" />
+              </Skeleton>
+            ) : (
+              <>
+                <Heading variant="h4" text={name} color="white" />
+                <Typography text={description} color="white" />
+              </>
+            )}
           </Box>
         </Box>
       </Box>
+
       <ListCard
         title="Read Comics For Free"
         data={comics}
+        loading={isListCardLoading}
         renderItem={(comic) => (
           <Link href={`/comics/${comic.id}`} key={comic.id}>
             <ComicCard {...comic} />

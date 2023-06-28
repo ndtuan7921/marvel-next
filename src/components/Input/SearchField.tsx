@@ -3,9 +3,15 @@ import { SearchOutlined } from "@mui/icons-material";
 import { InputBase, Stack, styled } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import { querySearch } from "../../services";
-import { ListItem } from "../List";
+// import { ListItem } from "../List";
 import Button from "./Button";
-import Link from "../Link";
+import dynamic from "next/dynamic";
+import ListItemSkeleton from "../Skeleton/ListItemSkeleton";
+// import Link from "../Link";
+const Link = dynamic(() => import("../Link"));
+const ListItem = dynamic(() =>
+  import("../List").then((module) => module.ListItem)
+);
 
 const Search = styled("div")(({ theme }) => ({
   borderBottom: "2px solid #151515",
@@ -59,6 +65,7 @@ function SearchField({ placeholder = "SEARCH ..." }: SearchFieldProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [type, setType] = useState("characters");
   const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
   const ref = useRef<HTMLInputElement>(null);
 
   const handleKeyDown = (e: any) => {
@@ -69,11 +76,16 @@ function SearchField({ placeholder = "SEARCH ..." }: SearchFieldProps) {
   };
   useEffect(() => {
     const fetchData = async () => {
-      let data;
-      // if (searchTerm !== "") data = await searchCharacters(searchTerm);
-      if (searchTerm !== "") data = await querySearch({ type, searchTerm });
+      if (searchTerm) {
+        setLoading(true);
+
+        const data = await querySearch({ type, searchTerm });
+        setResults(data);
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        setLoading(false);
+      }
+
       // console.log("search\t", data);
-      setResults(data);
     };
 
     fetchData();
@@ -93,16 +105,24 @@ function SearchField({ placeholder = "SEARCH ..." }: SearchFieldProps) {
         <Stack direction={"row"}>
           {typeItems.map((item) => {
             return (
-              <Button text={item.label} onClick={() => setType(item.id)} />
+              <Button
+                text={item.label}
+                onClick={() => setType(item.id)}
+                key={item.id}
+              />
             );
           })}
         </Stack>
       </Search>
-      {results &&
+      {loading &&
+        Array.from({ length: 5 }, (_, index) => (
+          <ListItemSkeleton key={index} />
+        ))}
+      {!loading &&
         results.length > 0 &&
         results.map((item: any) => {
           return (
-            <Link href={`/${type}/${item.id}`}>
+            <Link href={`/${type}/${item.id}`} key={item.id}>
               <ListItem {...item} />
             </Link>
           );
