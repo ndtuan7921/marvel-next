@@ -1,4 +1,3 @@
-"use client";
 import { ReactNode, createContext } from "react";
 
 export const UserContext = createContext({

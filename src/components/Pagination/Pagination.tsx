@@ -21,16 +21,6 @@ export default function Pagination(props: PaginationProps) {
       size="large"
       variant="outlined"
       shape="rounded"
-      sx={{
-        ".mui-style-13idyhs-MuiButtonBase-root-MuiPaginationItem-root": {
-          fontSize: "1rem",
-
-          "&.Mui-selected": {
-            color: "#fff",
-            backgroundColor: "#E62429",
-          },
-        },
-      }}
     />
   );
 }

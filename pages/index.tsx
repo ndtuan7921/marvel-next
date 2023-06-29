@@ -6,7 +6,7 @@ import { CharacterCard, ComicCard } from "../src/components/Card";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Link from "../src/components/Link";
 import { Box } from "@mui/material";
-import withAuth from "../src/hooks/withAuth";
+import withAuth from "../src/components/Auth/withAuth";
 
 export const getServerSideProps: GetServerSideProps<{
   comicsData: [];
@@ -33,7 +33,7 @@ function Home({
         sx={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "flex-end",
+          alignItems: "center",
         }}
       >
         <ListCard
@@ -45,15 +45,12 @@ function Home({
             </Link>
           )}
         />
-        <Link href={"/comics"}>
-          <Typography text={"See more Comics"} color={"red"} />
-        </Link>
       </Box>
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "flex-end",
+          alignItems: "center",
         }}
       >
         <ListCard
@@ -65,9 +62,6 @@ function Home({
             </Link>
           )}
         />
-        <Link href={"/characters"}>
-          <Typography text={"See more characters"} color={"red"} />
-        </Link>
       </Box>
     </>
   );

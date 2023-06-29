@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import HeaderLogo from "../assets/images/headerlogo.svg";
 import { Box } from "@mui/material";
@@ -66,7 +65,7 @@ function Header() {
         >
           <Typography
             text={"Sign in | Join"}
-            color={"white"}
+            color={"#ffffff"}
             sx={{ textTransform: "uppercase" }}
           />
         </Link>
@@ -74,7 +73,8 @@ function Header() {
         {/* logo */}
         <Link href="/">
           {/* <HeaderLogo /> */}
-          <Image src={HeaderLogo} alt={"header-logo"} />
+
+          <Image src={HeaderLogo} alt={"header-logo"} height={60} />
         </Link>
 
         {/* search */}
@@ -100,7 +100,7 @@ function Header() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              columnGap: "1rem",
+              columnGap: "3rem",
             }}
           >
             {NavItems.map((item) => {
@@ -111,7 +111,7 @@ function Header() {
                   style={{ listStyleType: "none" }}
                 >
                   <Link href={item.url}>
-                    <Typography text={item.label} color={"white"} />
+                    <Typography text={item.label} color={"#ffffff"} />
                   </Link>
                 </li>
               );

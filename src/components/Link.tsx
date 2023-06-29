@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import NextLink from "next/link";
 import { LinkProps as MuiLinkProps, Link as MuiLink } from "@mui/material";
@@ -14,9 +13,7 @@ export interface LinkProps extends LinkBaseProps {
 function Link({ href, style, children }: LinkProps) {
   return (
     <NextLink href={href} passHref legacyBehavior>
-      <MuiLink underline="none" sx={{ ...style, color: "inherit" }}>
-        {children}
-      </MuiLink>
+      <MuiLink style={style}>{children}</MuiLink>
     </NextLink>
   );
 }

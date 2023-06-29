@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,20 +16,14 @@ function Footer() {
           alignItems: "center",
           width: "80%",
           margin: "0 auto",
-          padding: "60px 0",
+          padding: "30px 0",
         }}
       >
         <Link href="/home" className="logo">
           <Image src={FooterLogo} alt={"footer-logo"} />
         </Link>
       </Box>
-      <Box
-        className="Footer-bottom"
-        sx={{
-          padding: "40px 0",
-          margin: "0 auto",
-        }}
-      >
+      <Box className="Footer-bottom">
         <nav>
           <ul
             style={{

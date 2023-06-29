@@ -3,7 +3,7 @@ import { AppProps } from "next/app";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider, EmotionCache } from "@emotion/react";
-import theme from "../src/theme";
+import customTheme from "../src/theme";
 import createEmotionCache from "../src/createEmotionCache";
 import { UserContextProvider } from "../src/context";
 import { NextPage } from "next";
@@ -60,7 +60,7 @@ export default function MyApp(props: AppPropsWithLayout) {
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={customTheme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
 

@@ -1,11 +1,9 @@
-"use client";
-import React, { ChangeEvent, ReactNode, useState } from "react";
-import { Skeleton, Stack } from "@mui/material";
+import { ChangeEvent, ReactNode, useState } from "react";
+import { Stack } from "@mui/material";
 import Heading from "../Heading";
 import CardSkeleton from "../Skeleton/CardSkeleton";
 import Pagination from "../Pagination/Pagination";
-import { Pagination as MuiPagination } from "@mui/material";
-import usePagination from "../Pagination/usePagination";
+import usePagination from "../../hooks/usePagination";
 interface ListCardProps {
   loading?: boolean;
   title: string;
@@ -38,6 +36,7 @@ function ListCard(props: ListCardProps) {
         justifyContent="center"
         spacing={2}
         flexWrap={"wrap"}
+        useFlexGap
       >
         {loading
           ? Array.from({ length: 5 }, (_, index) => (

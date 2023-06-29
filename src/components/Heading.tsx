@@ -1,5 +1,3 @@
-"use client";
-
 import Typography, { TypographyProps } from "./Typography";
 
 interface HeadingProps extends TypographyProps {

@@ -5,7 +5,7 @@ import { ListCard } from "../../src/components/List";
 import { CharacterCard, ComicCard } from "../../src/components/Card";
 import Heading from "../../src/components/Heading";
 import Link from "../../src/components/Link";
-import withAuth from "../../src/hooks/withAuth";
+import withAuth from "../../src/components/Auth/withAuth";
 export const getServerSideProps: GetServerSideProps<{
   characters: [];
 }> = async () => {

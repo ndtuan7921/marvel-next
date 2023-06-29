@@ -1,5 +1,3 @@
-"use client";
-import React from "react";
 import {
   Button as MuiButton,
   ButtonProps as MuiButtonProps,
@@ -17,20 +15,11 @@ interface ButtonProps extends ButtonBaseProps {
 }
 
 function Button(props: ButtonProps) {
-  const { text = "Load more", sx, onClick } = props;
+  const { text = "Load more", onClick } = props;
 
   return (
-    <MuiButton
-      variant="contained"
-      onClick={onClick}
-      sx={{
-        ...sx,
-        width: "100%",
-        background: "#E62429",
-        "&:hover": { background: "#9F0013" },
-      }}
-    >
-      <Typography text={text} color={"white"} />
+    <MuiButton variant="contained" onClick={onClick}>
+      <Typography text={text} color={"#ffffff"} />
     </MuiButton>
   );
 }

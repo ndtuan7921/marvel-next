@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -49,7 +48,7 @@ function ComicDetailPage() {
   return (
     <>
       {loading ? (
-        <Box sx={{ background: "#202020" }}>
+        <Box sx={{ background: "#202020", width: "100%" }}>
           <Box
             sx={{
               display: "flex",
@@ -72,7 +71,7 @@ function ComicDetailPage() {
             </Skeleton>
             <Box>
               <Skeleton sx={{ bgcolor: "#424242" }}>
-                <Heading variant={"h4"} text={title} color={"white"} />
+                <Heading variant={"h4"} text={title} color={"#ffffff"} />
               </Skeleton>
               <Skeleton sx={{ bgcolor: "#424242" }} />
               <Skeleton sx={{ bgcolor: "#424242" }} />
@@ -80,7 +79,7 @@ function ComicDetailPage() {
           </Box>
         </Box>
       ) : (
-        <Box sx={{ background: "#202020" }}>
+        <Box sx={{ background: "#202020", width: "100%" }}>
           <Box
             sx={{
               display: "flex",
@@ -102,7 +101,7 @@ function ComicDetailPage() {
                 src={`${thumbnail.path}.${thumbnail.extension}`}
                 alt={"comic-thumbnail"}
                 width={430}
-                height={480}
+                height={500}
               />
             </Box>
             <Box
@@ -114,21 +113,21 @@ function ComicDetailPage() {
                 color: "white",
               }}
             >
-              <Heading variant={"h4"} text={title} color={"white"} />
+              <Heading variant={"h4"} text={title} color={"#ffffff"} />
               <Box>
                 <Typography
                   text={"Published"}
                   variant="h6"
                   sx={{ marginBottom: "5px" }}
-                  color={"white"}
+                  color={"#ffffff"}
                 />
                 <Typography
                   text={modified}
                   variant="subtitle1"
-                  color={"white"}
+                  color={"#ffffff"}
                 />
               </Box>
-              <Typography text={description} color={"white"} />
+              <Typography text={description} color={"#ffffff"} />
             </Box>
           </Box>
         </Box>

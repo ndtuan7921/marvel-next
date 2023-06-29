@@ -68,7 +68,7 @@ function CharacterDetailPage() {
 
   return (
     <>
-      <Box sx={{ background: "#202020" }}>
+      <Box sx={{ background: "#202020", width: "100%" }}>
         <Box
           sx={{
             display: "flex",
@@ -90,9 +90,9 @@ function CharacterDetailPage() {
               <Skeleton sx={{ bgcolor: "#424242" }}>
                 <Image
                   src={`${thumbnail.path}.${thumbnail.extension}`}
-                  alt={"comic-thumbnail"}
+                  alt={"character-thumbnail"}
                   width={430}
-                  height={480}
+                  height={500}
                 />
               </Skeleton>
             ) : (
@@ -100,7 +100,7 @@ function CharacterDetailPage() {
                 src={`${thumbnail.path}.${thumbnail.extension}`}
                 alt="character-thumbnail"
                 width={430}
-                height={480}
+                height={500}
               />
             )}
           </Box>
@@ -127,18 +127,27 @@ function CharacterDetailPage() {
           </Box>
         </Box>
       </Box>
-      {comics.length > 0 && (
-        <ListCard
-          title="Read Comics For Free"
-          data={comics}
-          loading={isListCardLoading}
-          renderItem={(comic) => (
-            <Link href={`/comics/${comic.id}`} key={comic.id}>
-              <ComicCard {...comic} />
-            </Link>
-          )}
-        />
-      )}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
+        {comics.length > 0 && (
+          <ListCard
+            title={`More ${name}`}
+            data={comics}
+            loading={isListCardLoading}
+            renderItem={(comic) => (
+              <Link href={`/comics/${comic.id}`} key={comic.id}>
+                <ComicCard {...comic} />
+              </Link>
+            )}
+          />
+        )}
+      </Box>
     </>
   );
 }
