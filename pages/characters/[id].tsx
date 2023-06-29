@@ -127,17 +127,18 @@ function CharacterDetailPage() {
           </Box>
         </Box>
       </Box>
-
-      <ListCard
-        title="Read Comics For Free"
-        data={comics}
-        loading={isListCardLoading}
-        renderItem={(comic) => (
-          <Link href={`/comics/${comic.id}`} key={comic.id}>
-            <ComicCard {...comic} />
-          </Link>
-        )}
-      />
+      {comics.length > 0 && (
+        <ListCard
+          title="Read Comics For Free"
+          data={comics}
+          loading={isListCardLoading}
+          renderItem={(comic) => (
+            <Link href={`/comics/${comic.id}`} key={comic.id}>
+              <ComicCard {...comic} />
+            </Link>
+          )}
+        />
+      )}
     </>
   );
 }

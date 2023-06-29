@@ -2,7 +2,7 @@ import { publish_key, hashed_key } from "../../env.config";
 
 export const getComics = async () => {
   try {
-    const URL = `http://gateway.marvel.com/v1/public/comics?ts=1&apikey=${publish_key}&hash=${hashed_key}`;
+    const URL = `http://gateway.marvel.com/v1/public/comics?limit=100&ts=1&apikey=${publish_key}&hash=${hashed_key}`;
     const res = await fetch(URL);
     let data = await res.json();
     return data.data.results;
@@ -35,7 +35,7 @@ export const getComicsByCharacterId = async (id: string) => {
 
 export const getCharacters = async () => {
   try {
-    const URL = `http://gateway.marvel.com/v1/public/characters?ts=1&apikey=${publish_key}&hash=${hashed_key}`;
+    const URL = `http://gateway.marvel.com/v1/public/characters?limit=100&ts=1&apikey=${publish_key}&hash=${hashed_key}`;
     const res = await fetch(URL);
     let data = await res.json();
     return data.data.results;
@@ -63,7 +63,7 @@ export const querySearch = async (query: {
   try {
     const URL = `http://gateway.marvel.com/v1/public/${type}?${
       type === "comics" ? "title" : "name"
-    }StartsWith=${searchTerm}&ts=1&apikey=${publish_key}&hash=${hashed_key}`;
+    }StartsWith=${searchTerm}&limit=100&ts=1&apikey=${publish_key}&hash=${hashed_key}`;
     const res = await fetch(URL);
     let data = await res.json();
     return data.data.results;
