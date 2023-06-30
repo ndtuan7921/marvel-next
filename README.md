@@ -56,14 +56,18 @@ npm start
 ```
 
 ## Running test
-1. To open the Cypress test runner, run the following command:
+1. Checkout the branch ```cypress-testing```
+2. Install all dependencies. To open the Cypress test runner, run the following command:
+```sh
+npm install
+```
   
 ```sh
 npx cypress open
 ```
 The Cypress test runner will open, showing the available test files.
 
-2. Click on a test file to run the tests within it. Cypress will launch a browser window and execute the tests.
+3. Click on a test file to run the tests within it. Cypress will launch a browser window and execute the tests.
 
 Note: Make sure the development server is running ```npm run dev``` before running the Cypress tests. 
 
