@@ -95,6 +95,7 @@ function SearchField({ placeholder = "SEARCH ..." }: SearchFieldProps) {
             placeholder={placeholder}
             inputRef={ref}
             onKeyDown={handleKeyDown}
+            data-cy="search-field"
           />
           <Stack direction={"row"}>
             {typeItems.map((item) => {
@@ -121,7 +122,11 @@ function SearchField({ placeholder = "SEARCH ..." }: SearchFieldProps) {
             results.length > 0 &&
             results.map((item: any) => {
               return (
-                <Link href={`/${type}/${item.id}`} key={item.id}>
+                <Link
+                  href={`/${type}/${item.id}`}
+                  key={item.id}
+                  className="link-result"
+                >
                   <ListItem {...item} />
                 </Link>
               );

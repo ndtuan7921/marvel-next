@@ -68,6 +68,9 @@ function CharacterDetailPage() {
 
   return (
     <>
+      <div style={{ display: "none" }} data-cy="character-id">
+        {router.query.id}
+      </div>
       <Box sx={{ background: "#202020", width: "100%" }}>
         <Box
           sx={{
@@ -141,7 +144,11 @@ function CharacterDetailPage() {
             data={comics}
             loading={isListCardLoading}
             renderItem={(comic) => (
-              <Link href={`/comics/${comic.id}`} key={comic.id}>
+              <Link
+                href={`/comics/${comic.id}`}
+                className="comic-link"
+                key={comic.id}
+              >
                 <ComicCard {...comic} />
               </Link>
             )}

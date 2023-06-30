@@ -23,6 +23,7 @@
   "devDependencies": {
     "@types/node": "latest",
     "@types/react": "latest",
+    "cypress": "^12.16.0",
     "eslint": "latest",
     "eslint-config-next": "latest",
     "typescript": "latest"

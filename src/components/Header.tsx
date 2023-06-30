@@ -80,6 +80,7 @@ function Header() {
         {/* search */}
         <Link
           href="/search"
+          className="search-link"
           style={{
             padding: "0 15px",
             color: "white",

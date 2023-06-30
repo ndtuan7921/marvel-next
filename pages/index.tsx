@@ -7,6 +7,7 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import Link from "../src/components/Link";
 import { Box } from "@mui/material";
 import withAuth from "../src/components/Auth/withAuth";
+import Heading from "../src/components/Heading";
 
 export const getServerSideProps: GetServerSideProps<{
   comicsData: [];
@@ -29,6 +30,7 @@ function Home({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
+      <Heading variant={"h3"} text={"HOME PAGE"} />
       <Box
         sx={{
           display: "flex",
@@ -40,7 +42,11 @@ function Home({
           title={"Read Comics For Free"}
           data={comicsData}
           renderItem={(comic) => (
-            <Link href={`/comics/${comic.id}`} key={comic.id}>
+            <Link
+              href={`/comics/${comic.id}`}
+              key={comic.id}
+              className="comic-link"
+            >
               <ComicCard {...comic} />
             </Link>
           )}
@@ -57,7 +63,11 @@ function Home({
           title={"Marvel Characters List"}
           data={charactersData}
           renderItem={(character) => (
-            <Link href={`/characters/${character.id}`} key={character.id}>
+            <Link
+              href={`/characters/${character.id}`}
+              key={character.id}
+              className="character-link"
+            >
               <CharacterCard {...character} />
             </Link>
           )}

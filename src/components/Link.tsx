@@ -4,16 +4,18 @@ import { LinkProps as MuiLinkProps, Link as MuiLink } from "@mui/material";
 
 type LinkBaseProps = Pick<
   MuiLinkProps,
-  "underline" | "sx" | "children" | "TypographyClasses"
+  "underline" | "sx" | "children" | "className"
 >;
 export interface LinkProps extends LinkBaseProps {
   href: string;
   style?: {};
 }
-function Link({ href, style, children }: LinkProps) {
+function Link({ href, style, children, className }: LinkProps) {
   return (
     <NextLink href={href} passHref legacyBehavior>
-      <MuiLink style={style}>{children}</MuiLink>
+      <MuiLink style={style} className={className}>
+        {children}
+      </MuiLink>
     </NextLink>
   );
 }
