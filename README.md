@@ -52,7 +52,7 @@ NEXT_PUBLIC_HASHED_KEY=
 4. Now run the app
 
 ```sh
-npm start
+npm run dev
 ```
 
 ## Running test
